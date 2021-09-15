@@ -1,0 +1,58 @@
+*****UC1*****
+
+ create database payroll_service;  //Create database name payroll_service
+
+show databases;                    // show databases
+
+
+ use payroll_service;              // go to database created
+
+*****UC2*****
+ create table employee_payroll (          // create table
+    -> id INT unsigned NOT NULL AUTO_INCREMENT,
+    -> name VARCHAR(150) NOT NULL,
+    -> salary Double NOT NULL,
+    -> start DATE NOT NULL,
+    -> PRIMARY KEY (id)
+    -> );
+
+
+mysql> DESCRIBE employee_payroll;     // learn data type
+
+
+*********UC3**********
+insert into employee_payroll (name, salary, start) values  //insert into table
+    -> ( 'bill',100000.00,'2018-01-03'),
+    -> ('terisa',200000.00,'2019-11-13');
+
+
+**********UC4********
+select * from employee_payroll;         //ability to retrive the data
+
+
+***********UC5**********
+ select salary from employee_payroll where name='bill'; // use where clause
+
+
+select * from employee_payroll where start between CAST('2018-01-01' AS DATE)AND DATE(NOW());  // find entries between given date to current date
+
+   
+************UC6************
+
+alter table employee_payroll add gender char(1) after name;     // alter table to add row
+
+update employee_payroll set gender = 'M' where name = 'bill';   // update query with where condition
+
+mysql> select * from employee_payroll;
+
+
+******UC7*******
+ select sum(salary) from employee_payroll where gender = 'F' group by gender; // sum function
+           
+
+
+mysql> select gender, count(name) from employee_payroll group by gender;  // count function
+   
+
+ select * ,avg(salary) from employee_payroll; // avg salary regardless of gender
+ 
